@@ -28,5 +28,5 @@ function jugadaRandom() {
 
 function compararJugadas() {
 
-
-// const resultadoDePartida = compararJugadas()
+}
+const resultadoDePartida = compararJugadas()

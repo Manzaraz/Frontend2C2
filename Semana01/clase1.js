@@ -1,10 +1,30 @@
 /* -------------------------------------------------------------------------- */
 /*                                  FUNCION 1                                 */
 /* -------------------------------------------------------------------------- */
-function iniciarJuego() {
 
+function iniciarJuego() {
+    // Saludar al visitante
+    alert("Bienvenido al juego de Piedra, Papel o Tijeras de Frontend2.!")
+    
+    // Guardadr en una variable o constante.
+    // const nombre = prompt("¿Me puede indicar su nombre?")
+    // let nombre = prompt("¿Me puede indicar su nombre?")
+    var nombre = prompt("¿Me puede indicar su nombre?")
+    
+    // alert("¡Hola estimado desarrollador:!" + nombre +  ", Mucha suerte")
+    alert(`¡Hola estimado desarrollador:! ${nombre} , Mucha suerte`)
+    
+    // Mostramos los datos en consola
+    console.log("---------------------------");
+    console.log("El nombre del jugador es: ");
+    console.log(nombre);
+    console.log("---------------------------");
+
+    return nombre
 }
 
+let usuario = iniciarJuego()
+console.log(usuario);
 
 /* -------------------------------------------------------------------------- */
 /*                          CONSIGNA MESA DE TRABAJO                          */
