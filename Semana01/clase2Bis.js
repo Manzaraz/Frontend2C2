@@ -5,6 +5,8 @@
 // Listemos las funciones para recordarlo mejor
 // FUNCION 1: iniciarJuego()
 // -> Es la que se encarga de recopilar el nombre del jugador y saludarlo.
+const nombreDelJugador = iniciarJuego()
+
 // FUNCION 2: pedirJugada()
 // -> Esta se encarga de pedirle una eleccion al usuario hasta que ingrese un número válido.
 // FUNCION 3: jugadaRandom()
@@ -15,6 +17,26 @@
 /* ------------------------------ 👇Comenzamos ------------------------------ */
 // Primero debemos limpiar los scripts anteriores y dejar solo las funciones, quitamos las variables y las empezamos a declarar solo en este script
 
+let marcador = {
+    usuario: 0,
+    computadora: 0
+}
+
+// mientras ninguno haya llegado a sumar 2 puntos seguimos jugado
+while (marcador.usuario < 2 && marcador.computadora < 2) {
+    const RESULTADO_PARTIDA = compararJugadas()
+    alert(RESULTADO_PARTIDA)
+    console.log(RESULTADO_PARTIDA)
+    
+    // verificar el mensaje de resultado partida me indica que gané!
+    if (RESULTADO_PARTIDA.includes("ganaste")) {
+        marcador.usuario++
+    } else if (RESULTADO_PARTIDA.includes("perdiste")) {
+        marcador.computadora++
+    }
+
+    console.log(marcador);
+}
 
 
 
