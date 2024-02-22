@@ -63,7 +63,7 @@ function obtenerUsuario() {
     // y luego agregar el resto desde la posicion 2 o indice 1 para juan sería uan
     // por ultimo el metodo join los une en un string separandolos con espacio entre nombres
     
-    console.log(usuario);
+    // console.log(usuario);
 
     // Insertarlo el dato en HTML
     nombreUsuario.textContent = usuario 
@@ -73,7 +73,7 @@ function obtenerUsuario() {
     // nombreUsuario.innerHTML = `<div>${usuario}</div>`
 }
 
-obtenerUsuario();
+// obtenerUsuario();
 
 /* -------------------------------------------------------------------------- */
 /*                [2] FUNCION: renderizar tarjetas del almbumes               */
@@ -82,7 +82,7 @@ obtenerUsuario();
 function renderizarAlbumes(listado) {
     // capturamos el selector donde inserto los nuevos nodos (o etiquetas HTML)
     const covers = document.querySelector(".covers")
-    console.log(covers);
+    // console.log(covers); 
 
     // covers.textContent = ""
     covers.innerHTML = ""
@@ -145,7 +145,35 @@ renderizarAlbumes(albumesFamosos);
 // 3- tener en cuenta: usar las palabra en plural o en singular, según cuando
 // sea necesario ( es decir: 1 album, 1 favorito / 2 albumes, 3 favoritos )
 function mostrarDatosEnPerfil(albumes) {
-// desarrollar la función 👇
+    // desarrollar la función 👇 
+    // <span id="cant-albums">0 álbumes</span> en tu listado - En total <span id="cant-favoritos">0 favoritos</span>
+    const cantidadDeAlbumes = document.querySelector("#cant-albums"),
+        cantidadDeFavoritos = document.getElementById("cant-favoritos")
 
+    let contadorAlbumes = 0,
+        contadorFavoritos = 0;
+
+    albumes.forEach( albumes => {
+        contadorAlbumes++ // Esto es para contar la totalidad de los albumes que tengo disponible
+        
+        // Ahora vamos a buscar y contar las proripedades de album.like == true
+        // if (albumes.like == true) {
+        if (albumes.like) {
+            contadorFavoritos++
+        }
+        // console.log(contadorAlbumes, contadorFavoritos);
+
+        if (contadorAlbumes == 1) {
+            cantidadDeAlbumes.textContent = contadorAlbumes + " álbum"
+        } else {
+            cantidadDeAlbumes.textContent = `${contadorAlbumes} álbumes`
+        }
+
+        if (contadorFavoritos == 1) {
+            cantidadDeFavoritos.textContent = `${contadorFavoritos} álbum`
+        } else {
+            cantidadDeFavoritos.textContent = `${contadorFavoritos} álbumes`
+        }
+    } )
 }
 mostrarDatosEnPerfil(albumesFamosos);
