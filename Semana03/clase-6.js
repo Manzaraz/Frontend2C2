@@ -51,7 +51,7 @@ marcarFavorito()
 // preguntar al usuario cual quiere eliminar.
 // Vamos a seguir las indicaciones que nos permiten lograrlo utilizando eventos.
 // 1- Hay que escuchar el evento de 'keydown' para detectar cuando el usuario
-// presiona la tecla f
+// presiona la tecla f✅
 // 2- Una vez que detectamos la tecla, debemos mostrarle un prompt al usuario
 // para que ingrese el nombre del album que desea eliminar
 // 3- Podemos buscar la posicion del almbum buscado en el array con la funcion .findIndex()
@@ -59,8 +59,31 @@ marcarFavorito()
 // 5- Acto seguido debemos llamar a las funciones de renderizar y marcar favorito para que sean nuevamente aplicadas.
 
 
-function eliminarAlbum() {
-    // desarrollar la función 👇
 
+window.addEventListener("keydown", eliminarAlbum)
+
+function eliminarAlbum(evento) {
+    // desarrollar la función 👇
+    // console.log(evento.key);
+    // console.log(evento.code);
+
+    if (evento.code == "KeyF") {
+        console.log("presionaste la letra f");
+        const albumAEliminar = prompt("¿Cuál álbum deseas eliminar?").toLowerCase()
+        console.log(albumAEliminar);
+
+        const posicionAEliminar = albumesFamosos.findIndex( album =>  album.nombre.toLowerCase() == albumAEliminar)
+        console.log(posicionAEliminar);
+
+        if (posicionAEliminar == -1) {
+            alert("El álbum no se encuentra en la lista de reproducción")
+        } else {
+            albumesFamosos.splice(posicionAEliminar, 1)
+        }
+
+        renderizarAlbumes(albumesFamosos)
+        mostrarDatosEnPerfil(albumesFamosos)
+        marcarFavorito(albumesFamosos)        
+    }
 }
-eliminarAlbum();
+// eliminarAlbum();
