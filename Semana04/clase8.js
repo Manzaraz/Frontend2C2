@@ -3,22 +3,54 @@
 /* -------------------------------------------------------------------------- */
 function capturarDatosFormulario() {
     // 👇🏼 Establecer un objeto vacio para despues rellenarlo con los datos del form, 
+    const objetoInformacion = {
+        nombre: "",
+        password: "",
+        telefono: "",
+        hobbies: [],
+        nacionalidad: "",
+    }
     
-     
     // Capturamos los nodos de nuestro dom
     // Fieldset Datos
+    // const nom = document.querySelector("#nom")
+    // const pass = document.querySelector("#pass")
+    // const tel = document.querySelector("#tel")
     
     // Fieldset Hobbies
-    
+    // const hobbies = document.querySelectorAll("[name=hobbies]")
+    const hobbies = document.getElementsByName("hobbies")
+    // console.log(hobbies);
     
     // Fieldset Nacionalidad
-    
+    const nacionalidad = document.querySelectorAll("[name=nacionalidad]")
+    // console.log(nacionalidad);
 
     // Rellenamos el objetoInformacion con la info pertinente
+    // objetoInformacion.nombre = nom.value
+    // objetoInformacion.password = pass.value
+    // objetoInformacion.telefono = tel.value
+    objetoInformacion.nombre = document.querySelector("#nom").value
+    objetoInformacion.password = document.querySelector("#pass").value
+    objetoInformacion.telefono = document.querySelector("#tel").value
 
-   
+    hobbies.forEach((hobbie) => {
+        if (hobbie.checked) {
+            // para cada iteracion donde esta CHECKEADO el elemento se guarde en el array
+            objetoInformacion.hobbies.push(hobbie.id)            
+        }
+    })
+
+    nacionalidad.forEach( nacion => {
+        if (nacion.checked) {
+            // para cada país de la iteracion donde esta CHECKEADO el elemento se guarde en la propiedad
+            objetoInformacion.nacionalidad = nacion.id
+        }
+    })
+
+   return objetoInformacion
 }
-capturarDatosFormulario()
+// capturarDatosFormulario()
 
 /* -------------------------------------------------------------------------- */
 /*                 [2] FUNCION: escuchamos el submit del form                 */
@@ -26,7 +58,22 @@ capturarDatosFormulario()
 const form = document.querySelector("form")
 
 form.addEventListener("submit", function (ev) {
+    // Prevenimos el comportamiento por defecto del HTML
+    ev.preventDefault()
+    // console.log(ev);
 
+    // Utilizamos la función para captura de los datos del formulario
+    const datos = capturarDatosFormulario()
+    // console.log(datos);
+
+    // validar los datos
+    const errores = validarInformacion(datos)
+    // console.log(errores);
+
+    // para luego mostrar un cuadro de dialogo indicando en qué se equivocó
+    renderizarErrores(errores)
+
+    mostrarMensajeExito(errores)
 })
 
 
@@ -37,7 +84,24 @@ form.addEventListener("submit", function (ev) {
 /* -------------------------------------------------------------------------- */
 // Desarrollamos esta funcion para llamarla en el submit
 function renderizarErrores(listado) {
+    const cajaDeErrores = document.querySelector("#errores")
+    console.log(cajaDeErrores);
 
+    // Si ya existe debemos eliminar la caja del dom
+    if (cajaDeErrores) {
+        cajaDeErrores.remove()
+    }
+
+    if (listado.length > 0) {
+        const divTemplate = document.createElement("div")
+        divTemplate.setAttribute("id","errores")
+        divTemplate.style = "background:rgba(255, 0, 0, 0.2);padding:.5em 1em;color: red;margin: .5em 0;";
+        listado.forEach( error => {
+            divTemplate.innerHTML += `<p><span>${error}</span></p>`
+        })
+
+        form.appendChild(divTemplate)
+    }
 }
 
 
@@ -54,7 +118,24 @@ function renderizarErrores(listado) {
 // 5- Si la lista de hobbies tiene más de 4 items, sumar el error: "Sólo es posible seleccionar 4 hobbies."
 // 5- Si no hay una nacionalidad definida, sumar el error: "Debe seleccionar una nacionalidad."
 function validarInformacion(usuario) {
+    let errores = []
+    if (!isNaN(usuario.nombre) || usuario.nombre.length < 3) {
+        errores.push("El nombre de usario debe tener mas de 3 caracteres y no ser un número")
+    }
+
+    if (usuario.password.trim().length < 6) {
+        errores.push("El password debe tener mas de 6 caracteres")
+    }
+
+    if (usuario.telefono.trim().length < 10) {
+        errores.push("El telefono debe tener mas de 10 números")
+    }
     
+    if (usuario.hobbies.length > 4 || usuario.hobbies.length == 0) {
+        errores.push("Sólo es posible seleccionar entre 4 hobbies, y como mínimo uno")
+    }
+
+    return errores
 }
 
 /* -------------------------------------------------------------------------- */
@@ -69,5 +150,8 @@ function validarInformacion(usuario) {
 // 5 - finalmente pasados 4 segundos: se debe eliminar esa caja, habilitar el boton y limpiar el formulario
 
 function mostrarMensajeExito(listado) {
+    setTimeout(() => {
+        console.log("success(Exito)");
+    }, 4000);
 
 }
