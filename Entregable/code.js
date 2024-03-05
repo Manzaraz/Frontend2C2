@@ -34,41 +34,6 @@ cambiarTema.addEventListener("click", alternarColorTema);
 
 /* --------------------------- NO TOCAR HASTA ACÁ --------------------------- */
 
-// function obtenerDatosDelUsuario() {
-//   /* --------------- PUNTO 1: Escribe tu codigo a partir de aqui --------------- */
-
-// }
-
-// function renderizarDatosUsuario() {
-//   /* ------------------- NO TOCAR NI ELIMINAR ESTA FUNCION. ------------------- */
-//   obtenerDatosDelUsuario();
-//   /* --------------- PUNTO 2: Escribe tu codigo a partir de aqui --------------- */
-
-// }
-
-
-// function recorrerListadoYRenderizarTarjetas() {
-//   /* ------------------ PUNTO 3: Escribe tu codigo desde aqui ------------------ */
-
-// }
-
-// function alternarColorTema() {
-//   /* --------------------- PUNTO 4: Escribe tu codigo aqui --------------------- */
-
-// }
-
-// /* --------------------- PUNTO 5: Escribe tu codigo aqui --------------------- */
-
-//   window.addEventListener("keypress", function(e) {
-//     console.log(e);
-//     console.log(e.keyCode);
-//     if (e.code == "KeyF") {
-//       document.querySelector("#sobre-mi").classList.remove("oculto")
-//       console.log(e.key);
-//     }
-//   }) 
-
-
 function obtenerDatosDelUsuario() {
   /* --------------- PUNTO 1: Escribe tu codigo a partir de aqui --------------- */
     do {
@@ -76,7 +41,7 @@ function obtenerDatosDelUsuario() {
     } while (datosPersona.nombre === null || datosPersona.nombre == "" || datosPersona.nombre.length < 3);
     do {
         fechaNacimiento = parseInt(prompt("Ingresa tu fecha de nacimiento:"))
-        datosPersona.edad = 2023 - fechaNacimiento 
+        datosPersona.edad = 2024 - fechaNacimiento 
     } while (!fechaNacimiento || fechaNacimiento.isNaN);
     do {
         datosPersona.ciudad = prompt("Ingresa el nombre tu Ciudad ")
@@ -104,7 +69,7 @@ function renderizarDatosUsuario() {
 function recorrerListadoYRenderizarTarjetas() {
   /* ------------------ PUNTO 3: Escribe tu codigo desde aqui ------------------ */
     const mostrarMaterias = document.querySelector("#fila");
-    mostrarMaterias.innerHTML = ""
+    // mostrarMaterias.innerHTML = ""
     console.log(mostrarMaterias)
     listado.forEach(lenguaje => {
         mostrarMaterias.innerHTML += `
@@ -115,6 +80,8 @@ function recorrerListadoYRenderizarTarjetas() {
         </div>
 `
     })
+    // materiasBtn.disabled = "true"
+    materiasBtn.removeEventListener("click", recorrerListadoYRenderizarTarjetas)
 }
 function alternarColorTema() {
   /* --------------------- PUNTO 4: Escribe tu codigo aqui --------------------- */
@@ -124,6 +91,9 @@ function alternarColorTema() {
 }
 /* --------------------- PUNTO 5: Escribe tu codigo aqui --------------------- */
 window.addEventListener("keydown", (e) => { 
+  console.log(e.key);
+  console.log(e.keyCode);
+  console.log(e.code);
     let sobreMiBtn = document.getElementById("sobre-mi");
     if (e.key.toLowerCase() === "f") {
         sobreMiBtn.classList.remove("oculto");
