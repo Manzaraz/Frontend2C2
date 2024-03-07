@@ -6,11 +6,13 @@
 /* -------------------------------------------------------------------------- */
 /*           [6] FUNCION: Escuchamos el evento de carga de la página          */
 // /* -------------------------------------------------------------------------- */
-// window.addEventListener("load", () => { 
+window.addEventListener("load", () => { 
     const usuario = recuperarDataDelStorage()
 
     renderizarElementos(usuario)
-// })
+    // tienen que agregar la funcion de la mesa
+
+})
 
 /* -------------------------------------------------------------------------- */
 /*                 [7] FUNCION: Recuperar la info del storage                 */
@@ -53,7 +55,7 @@ function renderizarElementos(objetoJS) {
 /* -------------------------------------------------------------------------- */
 // Ahora vamos a crear elementos en el DOM dinamicamente y le asignaremos a esos elementos la escucha de eventos.
 // ☝ La funcion debe ser ejecutada al final del evento Load.
-// La idea es crear un boton para cerrar sesión. Entonce necesitamos cumplir los siguientes puntos:
+// La idea es crear un boton para cerrar sesión. Entonces necesitamos cumplir los siguientes puntos:
 // 1- Crear un elemento <button>
 // 2- Que ese botón tenga el texto "Cerrar sesión"
 // 3- El boton tiene que tener ciertos estilos:
@@ -70,5 +72,6 @@ function renderizarElementos(objetoJS) {
 
 function botonCerrarSesion() {
     //    👇 desarrollar la función
+    
 
 }
