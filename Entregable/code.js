@@ -4,6 +4,7 @@ let datosPersona = {
   edad: 0,
   ciudad: "",
   interesPorJs: "",
+  metodo: function(){ console.log();}
 };
 
 const listado = [{

@@ -61,7 +61,7 @@ formulario.addEventListener('change', function () {
     estadoUsuario.email = inputEmail.value
     estadoUsuario.password = inputPassword.value
     estadoUsuario.rol = inputRol.value
-    estadoUsuario.terminos = inputTerminos.value
+    estadoUsuario.terminos = inputTerminos.checked
     // console.log(estadoUsuario);
 
     // Validar los datos de los inputs para modificar el objetoErroresOK
@@ -166,17 +166,25 @@ formulario.addEventListener('submit', function (evento) {
 /* -------------------------------------------------------------------------- */
 /*                [5] FUNCION: Formulario completado con éxito                */
 /* -------------------------------------------------------------------------- */
-// Esta ifuncion se va a encargar de realzar la redirección cuando el formulario se complete correctamente.
+// Esta ifuncion se va a encargar de realizar la redirección cuando el formulario se complete correctamente.
 // Para eso debera cumplir con los siguientes requerimientos.
-// 1 - Deshabilitar el boton del formulario.
+// 1 - Deshabilitar el boton del formulario.✅
 // 2 - Esperar 3 segundos para redireccionar a la página de 
-// 3 - Durante ese tiempo el boton deshabilitado debe mostrar el texto: "Cargando..."
+// 3 - Durante ese tiempo el boton deshabilitado debe mostrar el texto: "Cargando..."✅
 // 4 - Cuando vaya a la página de 'usuario.html' NO se debe permitir que mediante el botón de "Atrás"(la flechita del navegador) el usuario vuelva a index.
 
 function navegarPaginaExito() {
     //   desarrollar la funcion aqui
+    const btn = document.querySelector("button")
+    btn.setAttribute("disabled", true)
+    btn.textContent = "Cargando..."
     
+    localStorage.setItem('user', JSON.stringify(estadoUsuario)); // esto es para almacenar los datos del usuario en el localStorage
+
     // para redireccionar y no volver atrás es bueno usar el objeto
-    location.replace('./usuario.html')
+    setTimeout(() => {
+        location.replace('./usuario.html')
+        
+    }, 4000);
 
 }

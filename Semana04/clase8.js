@@ -172,8 +172,7 @@ function mostrarMensajeExito(listado) {
             boton.removeAttribute("disabled")
             form.reset()
             cajaExito.remove()
+            
         }, 4000);
-        
     }
-
 }
