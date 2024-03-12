@@ -75,7 +75,7 @@ let listadoComentarios = [{
 /* -------------------------------------------------------------------------- */
 /*                      [1] FUNCION: Escuchamos el click                      */
 /* -------------------------------------------------------------------------- */
-const boton = document.querySelector("button")
+
 
 
 
@@ -86,9 +86,6 @@ const boton = document.querySelector("button")
 // Creamos una funcion que retorna una promesa despues de 2,5 segundos.
 // La idea es simular la demora de tiempo en responder de un servidor.
 
-function consultaAsincrona(ruta) {
-    
-}
 
 
 /* ----------------------------- Mesa de trabajo ---------------------------- */

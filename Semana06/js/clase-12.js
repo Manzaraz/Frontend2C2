@@ -9,10 +9,6 @@
 // Esta API tiene su documentación en: const boton = document.querySelector('button');
 // Vamos a implementar el endpoint que nos devuelve comentarios para mostrarlos en pantalla.
 
-function consultaApi(endpoint) {
-
-    
-}
 
 /* -------------------------------------------------------------------------- */
 /*                      [5] FUNCION: Escuchamos el click                      */
@@ -25,11 +21,6 @@ function consultaApi(endpoint) {
 /* -------------------------------------------------------------------------- */
 // Acá vamos a reutilizar la función de renderizar renderizarElementos, implementando
 // el .map() y .join() para obtener el resultado esperado.
-
-function renderizarElementos(listado) {
-    
-
-}
 
 
 /* ----------------------------- Mesa de trabajo ---------------------------- */
