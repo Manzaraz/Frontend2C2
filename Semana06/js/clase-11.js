@@ -75,8 +75,23 @@ let listadoComentarios = [{
 /* -------------------------------------------------------------------------- */
 /*                      [1] FUNCION: Escuchamos el click                      */
 /* -------------------------------------------------------------------------- */
+const boton = document.querySelector("button")
 
+boton.addEventListener("click", () => { 
+    console.log("Click para ver comentarios");
+    
+    // llamamos a una funcion que nos va a retornar un objeto que va a ser el resultado de una promesa, 
+    consultaAsincrona("endpoint") // endpoint correcto
+    // consultaAsincrona("endpointMal") // endpoint incorrecto, que me debería arrojar un erro
+    .then( respuesta => {
+        console.log(respuesta);
+    })
+    .catch( err => {
+        console.log(err.status, err.message);
+    })
 
+    console.log("Fin del listener")
+ })
 
 
 
@@ -85,7 +100,28 @@ let listadoComentarios = [{
 /* -------------------------------------------------------------------------- */
 // Creamos una funcion que retorna una promesa despues de 2,5 segundos.
 // La idea es simular la demora de tiempo en responder de un servidor.
-
+function consultaAsincrona(ruta) {
+    // Rornamos la promesa
+    return new Promise((resolve, reject) => { 
+        // nos encargaremos de buscar un recurso en la API en base del endpoint recibido por parámetro
+        setTimeout(() => {
+            if(ruta == "endpoint") {
+                // si la respuesta tiene un estado 200 u oK
+                // resolve({
+                //     status: 200,
+                //     message: "Respuesta cumplida",
+                //     data: listadoComentarios
+                // })// listadoComentarios es la respuesat del servidor con el objeto que podremos iterar despues
+                resolve(listadoComentarios)
+            } else {
+                reject({
+                    status: 400,
+                    message: "Consulta rechazada"
+                })
+            }
+        }, 1500);
+     })
+}
 
 
 /* ----------------------------- Mesa de trabajo ---------------------------- */
