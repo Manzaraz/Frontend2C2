@@ -9,7 +9,30 @@
 // Esta API tiene su documentación en: const boton = document.querySelector('button');
 // Vamos a implementar el endpoint que nos devuelve comentarios para mostrarlos en pantalla.
 
+function consultaApi(endpoint) {
+    // console.log(endpoint);
+    // console.log(fetch(endpoint)) // acá nos damos cuenta que el fetch es una promesa... y que ya está preconfigurada para retornarme lo que tenga la API
+    fetch(endpoint)
+        .then((respuestaJson) => { 
+            console.log(respuestaJson);// respuesta un objeto json
+            if (!respuestaJson.ok) {
+                /// error en la solicitud 
+                console.log(respuestaJson.statusText );
+                return Promise.reject(respuestaJson)
+            }
+            // en vez de utilizar JSON.parse()
+            // las promesas tienen un metodo especifico para buscar un objeto literal con el cual pueda iterar
 
+            return respuestaJson.json()
+         })
+        .then((dataJS) => { 
+            // console.log(dataJS);
+            renderizarElementos(dataJS)
+
+        })
+        .catch(err => console.log(err))
+
+}
 
 /* -------------------------------------------------------------------------- */
 /*                      [5] FUNCION: Escuchamos el click                      */
@@ -18,12 +41,54 @@
 const boton = document.querySelector("button")
 const endpoint = 'https://jsonplaceholder.typicode.com/comments';
 
+boton.addEventListener("click", () => { 
+    console.log("🚩Click para ver comentarios");  
+
+    consultaApi(endpoint)
+
+
+    console.log("🚩Fin de la carga de comentarios");  
+ })
 
 /* -------------------------------------------------------------------------- */
 /*                      [6] FUNCION: renderizar elementos                     */
 /* -------------------------------------------------------------------------- */
 // Acá vamos a reutilizar la función de renderizar renderizarElementos, implementando
 // el .map() y .join() para obtener el resultado esperado.
+function renderizarElementos(listado) {
+    // console.log(listado);
+    const comentarios = document.querySelector(".comentarios")
+    // <div class="comentario">
+    //     <h4>mail@mail.com</h4>
+    //     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ducimus aut provident saepe blanditiis ab quia dolorum perferendis laudantium hic!</p>
+    // </div>
+
+   /* Renderizado con  con foreach 
+    comentarios.innerHTML = ""
+    listado.forEach(comentario => {
+        comentarios.innerHTML += `
+            <div class="comentario" data-id="${comentario.id}">
+                <h4>${comentario.email}</h4>
+                <p>${comentario.body}</p>
+            </div>
+        `
+    });
+    
+*/
+
+    const comentariosRenderizados = listado.map((comentario) => {
+        return `
+        <div class="comentario">
+            <h4>${comentario.email}</h4>
+            <p>${comentario.body}</p>
+        </div>`
+    })
+    comentarios.innerHTML = comentariosRenderizados.join("")
+
+    // console.log(comentariosRenderizados);
+    // console.log(listado);
+}
+
 
 
 /* ----------------------------- Mesa de trabajo ---------------------------- */
