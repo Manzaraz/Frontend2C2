@@ -10,10 +10,13 @@
 // Vamos a implementar el endpoint que nos devuelve comentarios para mostrarlos en pantalla.
 
 
+
 /* -------------------------------------------------------------------------- */
 /*                      [5] FUNCION: Escuchamos el click                      */
 /* -------------------------------------------------------------------------- */
 // Vamos a reimplementar la escucha del click lanzar las nuevas funciones.
+const boton = document.querySelector("button")
+const endpoint = 'https://jsonplaceholder.typicode.com/comments';
 
 
 /* -------------------------------------------------------------------------- */

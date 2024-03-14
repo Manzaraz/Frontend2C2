@@ -85,11 +85,14 @@ boton.addEventListener("click", () => {
     // consultaAsincrona("endpointMal") // endpoint incorrecto, que me debería arrojar un erro
     .then( respuesta => {
         console.log(respuesta);
+        renderizarElementos(respuesta)
     })
+    // .then()
     .catch( err => {
         console.log(err.status, err.message);
     })
 
+    // mientras se ejecuta pueden ir mostrando un loader
     console.log("Fin del listener")
  })
 
@@ -139,6 +142,14 @@ function consultaAsincrona(ruta) {
 // Muchos éxitos!
 
 function renderizarElementos(listado){
+    const comentarios = document.querySelector(".comentarios");
+    comentarios.innerHTML = "";
     // desarrollar la funcion 👇
-
+    const comentariosRenderizados = listado.map((comentario) => {
+        return `<div class="comentario">
+            <h4>${comentario.email}</h4>
+            <p>${comentario.body}</p>
+        </div>`
+    })
+    comentarios.innerHTML = comentariosRenderizados.join("");
 }
