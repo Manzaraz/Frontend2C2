@@ -15,11 +15,11 @@ function consultaApi(endpoint) {
     fetch(endpoint)
         .then((respuestaJson) => { 
             console.log(respuestaJson);// respuesta un objeto json
-            if (!respuestaJson.ok) {
-                /// error en la solicitud 
-                console.log(respuestaJson.statusText );
-                return Promise.reject(respuestaJson)
-            }
+            // if (!respuestaJson.ok) {
+            //     /// error en la solicitud 
+            //     console.log(respuestaJson.statusText );
+            //     return Promise.reject(respuestaJson)
+            // }
             // en vez de utilizar JSON.parse()
             // las promesas tienen un metodo especifico para buscar un objeto literal con el cual pueda iterar
 
@@ -30,7 +30,7 @@ function consultaApi(endpoint) {
             renderizarElementos(dataJS)
 
         })
-        .catch(err => console.log(err))
+        // .catch(err => console.log(err))
 
 }
 
