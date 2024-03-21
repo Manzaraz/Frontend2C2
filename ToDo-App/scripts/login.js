@@ -72,8 +72,6 @@ window.addEventListener('load', function () {
                  // redireccionamos a nuestro dashboard de todo
                  location.replace("./mis-tareas.html")
             }
-
-
         })
         .catch( err => {
             console.error(err);
@@ -88,11 +86,8 @@ window.addEventListener('load', function () {
                 console.error("Error del servidor | url no existe")
                 alert("Error del servidor o url no existe, comúniquese con el proveedor")
             }
-        })
-        
+        })        
     };
-
-
 });
 
 // "email": "juana@dearco.com",
