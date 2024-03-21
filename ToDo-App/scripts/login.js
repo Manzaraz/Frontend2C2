@@ -36,17 +36,16 @@ window.addEventListener('load', function () {
 
        realizarLogin(settings)
 
-       form.reset() // para limpiar los campos de los inputs del formulario
     });
-
-
+    
+    
     /* -------------------------------------------------------------------------- */
     /*                     FUNCIÓN 2: Realizar el login [POST]                    */
     /* -------------------------------------------------------------------------- */
     function realizarLogin(settings) {
-       console.log(settings);
-       console.log("🏄🏻‍♂️Lanzando la consulta a la API....");
-
+        console.log(settings);
+        console.log("🏄🏻‍♂️Lanzando la consulta a la API....");
+        
         fetch(`${url}/users/login`, settings)
         .then( response => {
             console.log(response);
@@ -55,27 +54,28 @@ window.addEventListener('load', function () {
             
             // Si hay un error, fuerzo el error para capturarlo en el .catch
             return Promise.reject(response)
-
-            // return response.json().then(errorData => {
-            //     throw new Error(errorData);
-            // })
             
-        })
-        .then(data =>{
-            console.log(data);
-            console.log(data.jwt);
-
-            if (data.jwt) {
-                // Guardamos el dato JWT en LocalStorage (ese token de autenticacion)
-                localStorage.setItem("jwt", JSON.stringify(data.jwt))
-
-                 // redireccionamos a nuestro dashboard de todo
-                 location.replace("./mis-tareas.html")
-            }
-        })
-        .catch( err => {
-            console.error(err);
-            console.error(err.status);
+            // return response.json().then(errorData => {
+                //     throw new Error(errorData);
+                // })
+                
+            })
+            .then(data =>{
+                console.log(data);
+                console.log(data.jwt);
+                
+                if (data.jwt) {
+                    // Guardamos el dato JWT en LocalStorage (ese token de autenticacion)
+                    localStorage.setItem("jwt", JSON.stringify(data.jwt))
+                    
+                    form.reset() // para limpiar los campos de los inputs del formulario
+                    // redireccionamos a nuestro dashboard de todo
+                    location.replace("./mis-tareas.html")
+                }
+            })
+            .catch( err => {
+                console.error(err);
+                console.error(err.status);
             if (err.status == 400) {
                 console.warn("Contraseña incorrecta")
                 alert("Contraseña incorrecta. Por favor vuelve a ingresarlo")
