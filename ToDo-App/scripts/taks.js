@@ -7,7 +7,8 @@
 window.addEventListener('load', function () {
 
   /* ---------------- variables globales y llamado a funciones ---------------- */
-  
+
+
 
 
   /* -------------------------------------------------------------------------- */
